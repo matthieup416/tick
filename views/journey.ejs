@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Ticketac - Journey</title>
+    <!-- To add in order to scale the view for mobiles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+  <body>
+
+
+
+   
+
+
+        <!-- HEADER -->
+
+            <nav class=" header col-12 navbar navbar-light bg-light">
+                <a class="navbar" href="/">
+                <img src="/images/train.png" width="50" height="50" class="logo" alt="">
+               <h4>Ticketac</h4>
+                </a>
+                <div class="text-end">
+                <ul class="nav">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="/users/logout">Deconnexion</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#"><span class="inactive-nav">My last trips</span></a>
+                    </li>
+                </ul>
+            </nav>
+
+    
+
+   
+
+        <div class="row d-flex justify-content-center m-0 pt-5">
+
+
+            <div class="col-12 col-sm-8 pr-5">
+                <h4 class="titleForm text-white ml-2" > Tickets available on <%= journeyArray[0].date.getDate()%> / <%=(journeyArray[0].date.getMonth()+1)%> </h4>
+               
+                <% for (var i=0; i<journeyArray.length; i++){ %>
+
+                <div class="bg-light d-flex justify-content-around mb-2 p-4 rounded align-items-center">
+                <div class="font-weight-bold"><%= journeyArray[i].departure%> / <%= journeyArray[i].arrival %></div>
+                <div>train departure at: <%= journeyArray[i].departureTime %></div>
+                <div class="font-weight-bold"><%= journeyArray[i].price %> €</div>
+                <a href="/mytickets?departureFromFront=<%= journeyArray[i].departure%>&arrivalFromFront<%= journeyArray[i].arrival %>&dateFromFront<%= journeyArray[i].date %>&departureTimeFromFront<%= journeyArray[i].date %>&priceFromFront<%= journeyArray[i].price %>" class="btn btn-danger">OK</a>
+                </div>                
+
+                <% } %>
+             
+            </div>
+        
+        </div>
+   
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>

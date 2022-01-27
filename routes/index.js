@@ -25,7 +25,7 @@ router.get('/homepage', function(req, res, next) {
 });
 
 
-/* GET Result page. */
+/* GET Journey page. */
 router.post('/journey', async function(req, res, next) {
 
   var departureOfJourney = req.body.departureCityFromFront
@@ -49,7 +49,7 @@ router.post('/journey', async function(req, res, next) {
 req.session.journeyArray.push(journey[i])
     }
 
-res.render('homepage', {journeyArray : req.session.journeyArray} );}
+res.render('journey', {journeyArray : req.session.journeyArray} );}
 });
 
 
