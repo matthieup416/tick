@@ -1,8 +1,32 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  height: 100vh;
+  font: 14px;
+  font-family: sans-serif;
+  background: linear-gradient(
+    to bottom,
+    #afd1e0 0%,
+    #3181b2 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+.active {
+  color: #c71821;
+  font-weight: bold;
+}
+
+h4 {
+  margin-left: 10px;
+  color: black;
+}
+
+.inactive-nav {
+  color: black;
+}
+
+#img-homepage {
+  width: 15vw;
 }
