@@ -45,7 +45,7 @@ router.post('/journey', async function(req, res, next) {
   }else{
 
     req.session.journeyArray = [];
-    for (var i=0; i< journey.length; i++){
+    for (var i=0; i<journey.length; i++){
 req.session.journeyArray.push(journey[i])
     }
 
