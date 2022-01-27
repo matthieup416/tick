@@ -8,6 +8,6 @@ var userSchema = mongoose.Schema({
     userJouneys : { type: mongoose.Schema.Types.ObjectId, ref: 'journeys' },
   });
   
-  var UserModel = mongoose.model('users', userSchema);
+  var userModel = mongoose.model('users', userSchema);
 
-  module.exports = UserModel; 
+  module.exports = userModel; 
