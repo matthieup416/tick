@@ -33,14 +33,26 @@
                                 <th scope="col">Price</th>
                                 </tr>
                             </thead>
+
                             <tbody class="bascket-item">
+                                <%
+                                var totalCmd= 0;
+
+                                for (var i=0; i< journeyticketsArray.length;i++) {%>
                                 <tr  class="table-light">
                                 <th scope="row">1</th>
-                                <td>Paris/Lille</td>
-                                <td>02/08/2019</td>
-                                <td>15:00 pm</td>
-                                <td>93 €</td>
+                                <td><%=journeyticketsArray[i].departure%>/<%=journeyticketsArray[i].arrival%></td>
+                                <td><%=dateFormat(journeyticketsArray[i].date)%></td>
+                                <td><%=dateFormat(journeyticketsArray[i].departureTime)%> pm</td>
+                                <td><%=journeyticketsArray[i].price%></td>
                                 </tr>
+
+
+                                <%
+                                totalCmd += journeyticketsArray[i].price
+                            
+                            }%>
+
                             </tbody>
 
                             <tr class="table-danger">
@@ -49,7 +61,7 @@
                                 <td>  </td>
                                 <td>  </td>
                                 <td>  </td>
-                                <td class="total-box"> 93 €</td>
+                                <td class="total-box"> <%= totalCmd %>€</td>
                             </tr>
                             
                         

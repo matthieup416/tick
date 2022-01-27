@@ -38,7 +38,7 @@ router.post('/journey', async function(req, res, next) {
   date : dateOfJourney
   })
 
-  console.log("journey: ",journey)
+  // console.log("journey: ",journey)
 
   if (journey.length == 0 ) {
     res.redirect('/oops')
@@ -115,13 +115,40 @@ router.get('/oops', function(req, res, next) {
 });
 
 /* GET mytickets. */
-router.get('/mytickets', function(req, res, next) {
-  if (req.session.user == null) {
+router.get('/mytickets', async function(req, res, next) {
+  req.session.departureOfJourney = req.query.departureFromFront
+  req.session.arrivalOfJourney = req.query.arrivalFromFront
+  req.session.dateOfJourney = req.query.dateFromFront
+  req.session.departureTime = req.query.departureTimeFromFront
+  req.session.price = req.query.priceFromFront
 
-    res.redirect('/')
-  }
-  else   {
-  res.render('mytickets'); }
+
+
+  // var journeytickets = await journeyModel.find({
+  //   departure : req.session.departureOfJourney,
+  //   arrival : req.session.arrivalOfJourney,
+  //   date : req.session.journeytickets
+  //   })
+console.log(req.session.arrivalOfJourney);
+  // if (req.session.user == null) {
+
+  //   res.redirect('/')
+  // }
+  // else   {
+
+  req.session.journeyticketsArray = [];
+  
+  req.session.journeyticketsArray.push(
+  {departure : req.session.departureOfJourney,
+  arrival : req.session.arrivalOfJourney,
+  date :  req.session.dateOfJourney,
+  departureTime: req.session.departureTime,
+  price: Number(req.session.price)
+
+})
+  
+  res.render('mytickets', {journeyticketsArray:req.session.journeyticketsArray}); 
+// }
 
   
 });
