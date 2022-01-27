@@ -37,11 +37,11 @@
         <h2>One way ticket:</h2>
 </div>
         <div class="input-group mb-3 col-12 justify-content-center">
-            <form class="d-flex" action="" method="post">
-            <input type="text" class="form-control m-1" placeholder="From: Paris, Marseille..." aria-label="DepartureCity" aria-describedby="button-addon2">
-            <input type="text" class="form-control m-1" placeholder="To: Lille, Nantes... " aria-label="ArrivalCity" aria-describedby="button-addon2">
-            <input type="date" class="form-control m-1" aria-label="ArrivalDate" aria-describedby="button-addon2">
-            <button class="btn btn-danger" type="button" id="button-addon2">Go</button>
+            <form class="d-flex" action="/journey" method="post">
+            <input type="text" class="form-control m-1" placeholder="From: Paris, Marseille..." name="departureCityFromFront" aria-label="DepartureCity" aria-describedby="button-addon2">
+            <input type="text" class="form-control m-1" placeholder="To: Lille, Nantes... " name="arrivalCityFromFront" aria-label="ArrivalCity" aria-describedby="button-addon2">
+            <input type="date" class="form-control m-1" aria-label="ArrivalDate" name="dateFromFront" aria-describedby="button-addon2">
+            <button class="btn btn-danger" type="submit" id="button-addon2">Go</button>
               </form>
             
 
