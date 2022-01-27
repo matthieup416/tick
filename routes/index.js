@@ -102,9 +102,17 @@ res.render('homepage', {journeyArray : req.session.journeyArray} );}
 
 //   }
 
+/* GET oops. */
+router.get('/oops', function(req, res, next) {
+  if (req.session.user == null) {
 
-//   res.render('index', { title: 'Express' });
-// });
+    res.redirect('/')
+  }
+  else   {
+  res.render('oops'); }
+
+  
+});
 
 
 
