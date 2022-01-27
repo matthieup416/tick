@@ -114,6 +114,18 @@ router.get('/oops', function(req, res, next) {
   
 });
 
+/* GET mytickets. */
+router.get('/mytickets', function(req, res, next) {
+  if (req.session.user == null) {
+
+    res.redirect('/')
+  }
+  else   {
+  res.render('mytickets'); }
+
+  
+});
+
 
 
 module.exports = router;
