@@ -15,7 +15,13 @@ router.get('/', function(req, res, next) {
 
 /* GET home page. */
 router.get('/homepage', function(req, res, next) {
-  res.render('homepage', { title: 'Express' });
+
+  if (req.session.user == null) {
+
+    res.redirect('/')
+  }
+  else   {
+  res.render('homepage', { title: 'Express' }); }
 });
 
 // Remplissage de la base de donnée, une fois suffit
@@ -66,9 +72,19 @@ router.get('/result', function(req, res, next) {
     )
 
   }
+  res.render('index');
+});
 
+/* GET oops. */
+router.get('/oops', function(req, res, next) {
+  if (req.session.user == null) {
 
-  res.render('index', { title: 'Express' });
+    res.redirect('/')
+  }
+  else   {
+  res.render('oops'); }
+
+  
 });
 
 

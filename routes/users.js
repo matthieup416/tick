@@ -13,7 +13,8 @@ router.get('/', function(req, res, next) {
 
 
 router.post('/sign-up', async function(req,res,next){
-  console.log(req.body)
+  console.log(req.session.user)
+
   var searchUser = await userModel.findOne({
     email: req.body.emailFromFront
   })
@@ -43,7 +44,8 @@ router.post('/sign-up', async function(req,res,next){
 });
 
 router.post('/sign-in', async function(req,res,next){
-  console.log(req.session.user);
+  
+
   var searchUser = await userModel.findOne({
     email: req.body.emailFromFront,
     password: req.body.passwordFromFront
@@ -59,7 +61,7 @@ router.post('/sign-in', async function(req,res,next){
     res.redirect('/')
   }
 
-  
+  console.log(req.session.user);
 });
 
 router.get('/logout', function(req,res,next){
