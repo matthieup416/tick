@@ -116,52 +116,6 @@ router.get('/oops', function(req, res, next) {
 
 /* GET mytickets. */
 router.get('/mytickets', async function(req, res, next) {
-<<<<<<< HEAD
-  req.session.departureOfJourney = req.query.departureFromFront
-  req.session.arrivalOfJourney = req.query.arrivalFromFront
-  req.session.dateOfJourney = req.query.dateFromFront
-  req.session.departureTime = req.query.departureTimeFromFront
-  req.session.price = req.query.priceFromFront
-  req.session.journeyticketsArray = [];
-
-
-
-  // var journeytickets = await journeyModel.find({
-  //   departure : req.session.departureOfJourney,
-  //   arrival : req.session.arrivalOfJourney,
-  //   date : req.session.journeytickets
-  //   })
-console.log(req.session.arrivalOfJourney);
-  if (req.session.user == null) {
-
-    res.redirect('/')
-  }
-  else   {
-  
-  req.session.journeyticketsArray.push(
-  
-  {departure : req.session.departureOfJourney,
-  arrival : req.session.arrivalOfJourney,
-  date :  req.session.dateOfJourney,
-  departureTime: req.session.departureTime,
-  price: Number(req.session.price)
-
-}
-)
-  res.render('mytickets', {journeyticketsArray:req.session.journeyticketsArray}); 
-}
-
-
-router.get('/update-mytickets', function(req, res, next){
-  
-  var position = req.query.positionFromFront;
-  var newTab = [req.query.journeyticketsArray];
-  req.session.journeyticketsArray[position].push(newTab);
-
-
-  res.render('mytickets', {journeyticketsArray:req.session.journeyticketsArray});
-})
-=======
   
   
 
@@ -185,7 +139,6 @@ if (alreadyExist == false)
 }
 }
   res.render('mytickets', {journeyticketsArray:req.session.journeyticketsArray}); 
->>>>>>> cda5027d0f11fc92cce4055ac3f79f871cc2d10c
 
   
 });
