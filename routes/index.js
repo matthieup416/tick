@@ -121,6 +121,7 @@ router.get('/mytickets', async function(req, res, next) {
   req.session.dateOfJourney = req.query.dateFromFront
   req.session.departureTime = req.query.departureTimeFromFront
   req.session.price = req.query.priceFromFront
+  req.session.journeyticketsArray = [];
 
 
 
@@ -130,25 +131,35 @@ router.get('/mytickets', async function(req, res, next) {
   //   date : req.session.journeytickets
   //   })
 console.log(req.session.arrivalOfJourney);
-  // if (req.session.user == null) {
+  if (req.session.user == null) {
 
-  //   res.redirect('/')
-  // }
-  // else   {
-
-  req.session.journeyticketsArray = [];
+    res.redirect('/')
+  }
+  else   {
   
   req.session.journeyticketsArray.push(
+  
   {departure : req.session.departureOfJourney,
   arrival : req.session.arrivalOfJourney,
   date :  req.session.dateOfJourney,
   departureTime: req.session.departureTime,
   price: Number(req.session.price)
 
-})
-  
+}
+)
   res.render('mytickets', {journeyticketsArray:req.session.journeyticketsArray}); 
-// }
+}
+
+
+router.get('/update-mytickets', function(req, res, next){
+  
+  var position = req.query.positionFromFront;
+  var newTab = [req.query.journeyticketsArray];
+  req.session.journeyticketsArray[position].push(newTab);
+
+
+  res.render('mytickets', {journeyticketsArray:req.session.journeyticketsArray});
+})
 
   
 });
