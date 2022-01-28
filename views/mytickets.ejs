@@ -40,7 +40,7 @@
 
                                 for (var i=0; i< journeyticketsArray.length;i++) {%>
                                 <tr  class="table-light">
-                                <th scope="row">1</th>
+                                <th scope="row"><%= i+1 %></th>
                                 <td><%=journeyticketsArray[i].departure%>/<%=journeyticketsArray[i].arrival%></td>
                                 <td><%=dateFormat(journeyticketsArray[i].date)%></td>
                                 <td><%=journeyticketsArray[i].departureTime%> pm</td>
@@ -81,7 +81,7 @@
                                   <!-- Modal footer -->
                                   <div class="modal-footer">
                                      <button type="button" class="btn btn-danger" data-dismiss="modal">Back to results</button>
-                                     <a href="/homepage" ><button type="button" class="btn btn-primary">Confirm basket</button></a>
+                                     <a href="/confirmation" ><button type="button" class="btn btn-primary">Confirm basket</button></a>
                                   </div>
                                </div>
                             </div>

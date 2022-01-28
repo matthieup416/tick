@@ -8,9 +8,9 @@ var journeyModel = require('../models/journeys')
 var city = ["Paris","Marseille","Nantes","Lyon","Rennes","Melun","Bordeaux","Lille"]
 var date = ["2018-11-20","2018-11-21","2018-11-22","2018-11-23","2018-11-24"]
 
-/* GET home page. */
+/* GET Login page. */
 router.get('/', function(req, res, next) {
-  res.render('login', { title: 'Express' });
+  res.render('login');
 });
 
 /* GET home page. */
@@ -55,6 +55,10 @@ req.session.journeyArray.push(journey[i])
     }
 
 res.render('journey', {journeyArray : req.session.journeyArray} );}}
+});
+
+router.get('/mylasttickets', function(req, res, next) {
+  res.render('login', { title: 'Express' });
 });
 
 
@@ -140,7 +144,7 @@ router.get('/mytickets', async function(req, res, next) {
   for(var i = 0; i< req.session.journeyticketsArray.length; i++){
 if (req.session.journeyticketsArray && req.session.journeyticketsArray[i]._id == journeyElementFromList._id ) 
 { 
-  var alreadyExist = true; 
+  alreadyExist = true; 
 }
 if (alreadyExist == false) 
 {
@@ -148,10 +152,65 @@ if (alreadyExist == false)
 }
 }
   res.render('mytickets', {journeyticketsArray:req.session.journeyticketsArray})}; 
-
-  
 });
 
+/* GET My Last trip page. */
+router.get('/confirmation', async function(req, res, next) {
+console.log(req.session.journeyticketsArray)
+
+for (var i=0; i<req.session.journeyticketsArray.length; i++){
+
+  var userID = req.session.user._id
+  console.log(userID);
+ 
+  
+
+var newUserJourney = new journeyModel ({
+  _id : req.session.journeyticketsArray[i].id,
+  departure: req.session.journeyticketsArray[i].departure,
+  arrival: req.session.journeyticketsArray[i].arrival,
+  date: req.session.journeyticketsArray[i].date,
+  departureTime: req.session.journeyticketsArray[i].departureTime,
+  price: req.session.journeyticketsArray[i].price,
+})
+
+var userJourneySaved = await newUserJourney.save();
+}
+console.log("userJourneySaved :", userJourneySaved)
+
+
+var newUser = new userModel ({
+  name : req.session.user.name,
+  firstName :req.session.user.firstName,
+  email : req.session.user.email,
+  password : req.session.user.password,
+  userJourneys: [userJourneySaved._id],
+  });
+  
+  req.session.userSaved = await newUser.save();
+ 
+  var userTest = await userModel.findById(userID).populate('userJourneys').exec()
+ 
+
+
+
+
+
+res.redirect('/homepage')  
+});
+
+
+
+router.get('/mylasttrips', async function(req, res, next) {
+  var userID = req.session.user._id
+  console.log("userID",userID)
+  
+  var userTest = await userModel.findById(userID).populate('userJourneys').exec()
+
+console.log("userTest", userTest)
+
+  res.render('mylasttrips', {userJourneys : req.session.userSaved.userJourneys});
+});
 
 
 module.exports = router;

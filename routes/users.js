@@ -32,6 +32,9 @@ router.post('/sign-up', async function(req,res,next){
   
     req.session.user = {
       name: newUserSave.name,
+      firstname: newUserSave.firstname,
+      email: newUserSave.email,
+      password: newUserSave.password,
       id: newUserSave._id,
     }
   
@@ -53,10 +56,7 @@ router.post('/sign-in', async function(req,res,next){
   })
 
   if(searchUser!= null){
-    req.session.user = {
-      name: searchUser.name,
-      id: searchUser._id
-    }
+    req.session.user = searchUser
     res.render('homepage',{user:req.session.user})
   } else {
     res.redirect('/')
