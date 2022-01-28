@@ -38,7 +38,7 @@ router.post('/journey', async function(req, res, next) {
   date : dateOfJourney
   })
 
-  // console.log("journey: ",journey)
+  console.log("journey: ", journey[0]._id)
 
   if (journey.length == 0 ) {
     res.redirect('/oops')
@@ -116,6 +116,7 @@ router.get('/oops', function(req, res, next) {
 
 /* GET mytickets. */
 router.get('/mytickets', async function(req, res, next) {
+<<<<<<< HEAD
   req.session.departureOfJourney = req.query.departureFromFront
   req.session.arrivalOfJourney = req.query.arrivalFromFront
   req.session.dateOfJourney = req.query.dateFromFront
@@ -160,6 +161,31 @@ router.get('/update-mytickets', function(req, res, next){
 
   res.render('mytickets', {journeyticketsArray:req.session.journeyticketsArray});
 })
+=======
+  
+  
+
+  var journeyElementFromList = await journeyModel.findById(req.query.idFromFront);
+
+    var alreadyExist = false;
+
+
+  if (!req.session.journeyticketsArray){
+  req.session.journeyticketsArray = [];
+  req.session.journeyticketsArray.push(journeyElementFromList)}
+
+  for(var i = 0; i< req.session.journeyticketsArray.length; i++){
+if (req.session.journeyticketsArray && req.session.journeyticketsArray[i]._id == journeyElementFromList._id ) 
+{ 
+  var alreadyExist = true; 
+}
+if (alreadyExist == false) 
+{
+  req.session.journeyticketsArray.push(journeyElementFromList)
+}
+}
+  res.render('mytickets', {journeyticketsArray:req.session.journeyticketsArray}); 
+>>>>>>> cda5027d0f11fc92cce4055ac3f79f871cc2d10c
 
   
 });

@@ -44,14 +44,16 @@
                 <h4 class="titleForm text-white ml-2" > Tickets available on <%= journeyArray[0].date.getDate()%> / <%=(journeyArray[0].date.getMonth()+1)%> </h4>
                
                 <% for (var i=0; i<journeyArray.length; i++){ %>
-
                 <div class="bg-light d-flex justify-content-around mb-2 p-4 rounded align-items-center">
                 <div class="font-weight-bold"><%= journeyArray[i].departure%> / <%= journeyArray[i].arrival %></div>
                 <div>train departure at: <%= journeyArray[i].departureTime %></div>
                 <div class="font-weight-bold"><%= journeyArray[i].price %> €</div>
+<<<<<<< HEAD
                 <a href="/mytickets?positionFromFront=<%=i+1%>&departureFromFront=<%= journeyArray[i].departure%>&arrivalFromFront=<%= journeyArray[i].arrival %>&dateFromFront=<%= journeyArray[i].date %>&departureTimeFromFront=<%= journeyArray[i].date %>&priceFromFront=<%= journeyArray[i].price %>" class="btn btn-danger">OK</a>
+=======
+                <a type=submit href="/mytickets?idFromFront=<%= journeyArray[i]._id%>" class="btn btn-danger">OK</a>
+>>>>>>> cda5027d0f11fc92cce4055ac3f79f871cc2d10c
                 </div>                
-
                 <% } %>
              
             </div>
