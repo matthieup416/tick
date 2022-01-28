@@ -10,27 +10,13 @@
 </head>
 <body>
 
-    <!-- Header -->
-    <nav class=" header col-12 navbar navbar-light bg-light">
-        <a class="navbar" href="/">
-        <img src="/images/train.png" width="50" height="50" class="logo" alt="">
-       <h4>Ticketac</h4>
-        </a>
-        <div class="text-end">
-        <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/users/logout">Deconnexion</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"><span class="inactive-nav">My last trips</span></a>
-            </li>
-        </ul>
-    </nav>
-    <!-- Header -->
+    <%- include('header'); %>
 
-<div class="row text-center">
-<div class="col-12">
-        <h2>One way ticket:</h2>
+    <div class="row d-flex justify-content-center m-0 pt-5">
+
+
+        <div class="col-12 col-sm-8 pr-5">
+            <h4 class="titleForm text-white ml-3" > One way ticket:</h4>
 </div>
         <div class="input-group mb-3 col-12 justify-content-center">
             <form class="d-flex" action="/journey" method="post">
@@ -45,10 +31,12 @@
 
 </div>
 <div class="row d-flex text-center">
-    <div class="col-12 justify-content-center"><img id="img-homepage" src="images/landmark.png"></div>
+    <div class="col-12 justify-content-center"><img id="img-homepage" src="../images/landmark.png"></div>
 </div>
 
-        <p class="text-center">© 2022 LaCapsule</p>
+<div class="col-12 text-center">
+        <p class="text-center titleForm text-white ml-2">© 2022 LaCapsule</p>
+    </div>
   
 </div>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

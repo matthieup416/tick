@@ -10,7 +10,7 @@
   </head>
   <body>
 
-
+    <%- include('header'); %>
 
     <div class="container">
 
@@ -43,8 +43,8 @@
                                 <th scope="row">1</th>
                                 <td><%=journeyticketsArray[i].departure%>/<%=journeyticketsArray[i].arrival%></td>
                                 <td><%=dateFormat(journeyticketsArray[i].date)%></td>
-                                <td><%=dateFormat(journeyticketsArray[i].departureTime)%> pm</td>
-                                <td><%=journeyticketsArray[i].price%></td>
+                                <td><%=journeyticketsArray[i].departureTime%> pm</td>
+                                <td><%=journeyticketsArray[i].price%>€</td>
                                 </tr>
 
 

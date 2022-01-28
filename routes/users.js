@@ -37,9 +37,9 @@ router.post('/sign-up', async function(req,res,next){
   
     
   
-    res.redirect('/homepage')
+    res.render('homepage', {user:req.session.user})
   } else {
-    res.redirect('/')
+    res.render('/')
   }
   
 });
@@ -57,7 +57,7 @@ router.post('/sign-in', async function(req,res,next){
       name: searchUser.name,
       id: searchUser._id
     }
-    res.redirect('/homepage')
+    res.render('homepage',{user:req.session.user})
   } else {
     res.redirect('/')
   }

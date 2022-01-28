@@ -28,6 +28,13 @@ router.get('/homepage', function(req, res, next) {
 /* GET Journey page. */
 router.post('/journey', async function(req, res, next) {
 
+  if (req.session.user == null) {
+
+    res.redirect('/')
+  }
+  else   
+  {
+
   var departureOfJourney = req.body.departureCityFromFront
   var arrivalOfJourney = req.body.arrivalCityFromFront
   var dateOfJourney = req.body.dateFromFront
@@ -38,8 +45,6 @@ router.post('/journey', async function(req, res, next) {
   date : dateOfJourney
   })
 
-  console.log("journey: ", journey[0]._id)
-
   if (journey.length == 0 ) {
     res.redirect('/oops')
   }else{
@@ -49,7 +54,7 @@ router.post('/journey', async function(req, res, next) {
 req.session.journeyArray.push(journey[i])
     }
 
-res.render('journey', {journeyArray : req.session.journeyArray} );}
+res.render('journey', {journeyArray : req.session.journeyArray} );}}
 });
 
 
@@ -116,7 +121,11 @@ router.get('/oops', function(req, res, next) {
 
 /* GET mytickets. */
 router.get('/mytickets', async function(req, res, next) {
-  
+  if (req.session.user == null) {
+
+    res.redirect('/')
+  }
+  else   {
   
 
   var journeyElementFromList = await journeyModel.findById(req.query.idFromFront);
@@ -138,7 +147,7 @@ if (alreadyExist == false)
   req.session.journeyticketsArray.push(journeyElementFromList)
 }
 }
-  res.render('mytickets', {journeyticketsArray:req.session.journeyticketsArray}); 
+  res.render('mytickets', {journeyticketsArray:req.session.journeyticketsArray})}; 
 
   
 });
