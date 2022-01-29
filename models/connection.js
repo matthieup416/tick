@@ -1,13 +1,22 @@
 const mongoose = require('mongoose');
+
 // useNewUrlParser ;)
 var options = {
-    connectTimeoutMS: 5000,
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-   };
+  connectTimeoutMS: 5000,
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+ };
+
+ var identifiants = {
+   mdp: 'test',
+   identifiant: 'test',
+   nomCluster: 'CLUSTER'
+ }
+
+ 
 
 // --------------------- BDD -----------------------------------------------------
-mongoose.connect('mongodb+srv://Yannick:yannick@cluster0.rhyjx.mongodb.net/TickeTac?retryWrites=true&w=majority',
+mongoose.connect(`mongodb+srv://${identifiants.identifiant}:${identifiants.mdp}@cluster0.orqbr.mongodb.net/Ticketac?retryWrites=true`,
    options,
    function(err) {
     if (err) {
@@ -17,4 +26,3 @@ mongoose.connect('mongodb+srv://Yannick:yannick@cluster0.rhyjx.mongodb.net/Ticke
     }
    }
 );
-module.exports = mongoose

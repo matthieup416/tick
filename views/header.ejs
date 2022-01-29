@@ -6,12 +6,29 @@
            <h4>Ticketac</h4>
             </a>
             <div class="text-end">
-            <ul class="nav">
+            <ul class="nav nav-pills">
+
+              <% if (!user) {%>
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/users/logout">Deconnexion</a>
+                  <a class="nav-link active" aria-current="page" href="/">Connexion</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/mylasttrips"><span class="inactive-nav">My last trips</span></a>
-                </li>
-            </ul>
+               
+                
+
+                <%} else { %>
+                  
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><%= user.firstName %> <%= user.name%></a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="/mylasttrips">Mes voyages</a></li>
+                      
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="/users/logout">Déconnexion</a></li>
+                    </ul>
+                  </li>
+                    
+                 
+
+                <%}%>
+                </ul>
         </nav>

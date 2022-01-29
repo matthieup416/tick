@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
   </head>
   <body>
 
@@ -31,6 +33,7 @@
                                 <th scope="col">Date</th>
                                 <th scope="col">Departure time</th>
                                 <th scope="col">Price</th>
+                                <th scope="col"></th>
                                 </tr>
                             </thead>
 
@@ -45,6 +48,7 @@
                                 <td><%=dateFormat(journeyticketsArray[i].date)%></td>
                                 <td><%=journeyticketsArray[i].departureTime%> pm</td>
                                 <td><%=journeyticketsArray[i].price%>€</td>
+                                <td><a href="/deleteFromMyTickets?idToDelete=<%= journeyticketsArray[i]._id %>"><i class="deletepicto far fa-times-circle"></i></a></td>
                                 </tr>
 
 
@@ -62,48 +66,82 @@
                                 <td>  </td>
                                 <td>  </td>
                                 <td class="total-box"> <%= totalCmd %>€</td>
+                                <td></td>
                             </tr>
                             
                         
                         </table>
-                        <div class="text-right"> <button  class="btn btn-danger" data-bs-target="#staticBackdrop" data-toggle="modal" data-target="#myModal">Confirm</button> <div class="modal" id="myModal">
-                            <div class="modal-dialog modal-dialog-centered">
-                               <div class="modal-content">
-                                  <!-- Modal Header -->
-                                  <div class="modal-header">
-                                     <h4 class="modal-title">Confirmation</h4>
-                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                  </div>
-                                  <!-- Modal body -->
-                                  <div class="modal-body">
-                                     Voulez-vous confirmer votre commande ?
-                                  </div>
-                                  <!-- Modal footer -->
-                                  <div class="modal-footer">
-                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Back to results</button>
-                                     <a href="/confirmation" ><button type="button" class="btn btn-primary">Confirm basket</button></a>
-                                  </div>
-                               </div>
-                            </div>
-                         </div>
-                        </div>
+                      </div>
+                      <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Valider la commande
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Récapitulatif de votre commande  : </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
+      </div>
+      <div class="modal-body">
+        <table class="tableModal table-light ">
+                        <thead>
+                            <tr>
+                            <th scope="col">N°</th>
+                            <th scope="col">Journey</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Departure time</th>
+                            <th scope="col">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <% 
+                            var totalBasket = 0
+                            var Number = 0
+                            %>
+
+                            <% for(var i = 0; i<journeyticketsArray.length; i++){
+                                
+                                totalBasket = totalBasket + journeyticketsArray[i].price
+                                Number++
+
+                            %>
+                            <tr>
+                            <th scope="row"> <%= Number %> </th>
+                            <td> <%= journeyticketsArray[i].departure %> / <%=journeyticketsArray[i].arrival %></td>
+                            <td> <%= dateFormat(journeyticketsArray[i].date) %> </td>
+                            <td> <%= journeyticketsArray[i].departureTime %> pm</td>
+                            <td> <%= journeyticketsArray[i].price %> €</td>
+                            </tr>
+
+                            <% } %>
+
+                            <tr  class="table-danger">
+                            
+                            <th colspan="4">Total</th>
+                            <td> <%= totalBasket %> €</td>
+                            </tr>
+                        </tbody>
+                        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary bnt-close" data-bs-dismiss="modal">Retour</button>
+       <a href="/confirmation" type="button" class="btn btn-primary">Confirmer la commande</a>
+      </div>
+    </div>
+  </div>
+</div>
     
   
 
 
 
 
-  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-    Open modal
-</button> -->
- 
-
-
-
-
                         
                         
-                </div>        
             </div>    
 
             
@@ -115,7 +153,7 @@
   
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   </body>
 </html>
 
