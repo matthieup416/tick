@@ -8,8 +8,8 @@ var options = {
  };
 
  var identifiants = {
-   mdp: 'test',
-   identifiant: 'test',
+   mdp: 'password',
+   identifiant: 'identifiant',
    nomCluster: 'CLUSTER'
  }
 
