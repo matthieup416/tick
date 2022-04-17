@@ -8,9 +8,9 @@ var options = {
 }
 
 var identifiants = {
-  mdp: 'test',
-  identifiant: 'test',
-  nomCluster: 'Ticketac',
+  mdp: 'XXX',
+  identifiant: 'XXX',
+  nomCluster: 'XXX',
 }
 
 // --------------------- BDD -----------------------------------------------------
